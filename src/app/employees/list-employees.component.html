@@ -1,0 +1,60 @@
+
+   <div class="form-group">
+      <!--
+      <input type="text" class="form-control" placeholder="Search By Name"
+       style="width:300px" [(ngModel)]="searchTermForPipe" />
+       -->
+       <input type="text" class="form-control" placeholder="Search By Name"
+        [(ngModel)]="searchTerm" />
+   </div>
+   
+   <div  *ngFor="let employee of filteredEmployees">
+      <app-display-employee 
+      [employee]="employee"
+       [searchTerm]="searchTerm"
+       (notifyDelete)="onDeleteNotification($event)">
+        </app-display-employee>
+    </div>
+
+    <br/>
+    <br/>
+
+    <hr/>
+  
+    <h1 #h1Variable>
+  
+      </h1>
+      <!--
+      <div (click)="h1Variable.innerHTML= childComponent.employee.name + '  ' + childComponent.employee.gender">
+        -->
+      <div (click)="h1Variable.innerHTML='template reference =>' + childComponent.getEmployeeNameAndGender()"> 
+          <app-display-employee [employee]="employees[0]" #childComponent>
+            </app-display-employee>
+      </div>
+      
+      <hr/>
+      
+         <!-- Pass data parent component to child component-->
+         <!-- This is parent component calling child component 
+           by using <app-display-employee/> and passing value way like
+            [employee]="employee" and in child component we have 
+            @Input() employee: Employee;
+           -->
+         <!-- Pass data child component to Parent component-->
+         <!-- This is child component calling parent component 
+           by using (notify) in child component we have 
+            @Output() notify: : EventEmitter<string> = new EventEmitter<string>();
+           handleNotify function is in parent class list-employee-component.ts
+            -->
+          <!-- When we use pipe filter
+       <div  *ngFor="let employee of employees | employeeFilter:  searchTerm">
+         -->
+         <!-- when we use component based filter rather than pipe filter-->
+         
+      <h1 *ngIf="dataFromChild"> {{'using Output() =>  ' +dataFromChild?.name + '   '  + dataFromChild?.gender }}</h1>
+       <div (click)="onClick(employee.id)" class="pointerCursor"> 
+          <app-display-employee [employee]="employees[1]" (notify)="handleNotify($event)">
+          </app-display-employee>
+        </div>
+  
+  

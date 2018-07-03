@@ -1,0 +1,15 @@
+.imageClass{
+    width: 150px;
+    height: 150px;
+    align-items:center;
+  }
+  
+  .vertical-align
+  {
+      display:flex;
+      align-items:center;
+  }
+
+  buttoon.btn {
+       width: 70px;
+  }
